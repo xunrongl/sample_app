@@ -3,8 +3,10 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :content
       t.float :latitude
-      t.float :longitude
+      t.float :longtitude
       t.integer :imei
+      t.integer :like
+      t.integer :report
 
       t.timestamps null: false
     end

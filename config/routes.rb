@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'posts#new'
+
   resources :posts
   get 'static_pages/home'
 
