@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426230146) do
+ActiveRecord::Schema.define(version: 20150426233906) do
 
   create_table "posts", force: :cascade do |t|
     t.string  "content"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150426230146) do
     t.string  "imei"
     t.integer "like"
     t.integer "report"
-    t.integer "dontcare"
   end
 
 end
