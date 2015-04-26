@@ -56,6 +56,12 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       end
+      if @post[:dontcare]
+        flash[:success] = "Report updated"
+        @post.increment!(:dontcare)
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      end
     end
   end
 
@@ -77,7 +83,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :latitude, :longitude, :imei, :like, :report)
+      params.require(:post).permit(:content, :latitude, :longitude, :imei, :like, :report, :dontcare)
     end
 
     
