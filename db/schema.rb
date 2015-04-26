@@ -11,6 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426233906) do
+ActiveRecord::Schema.define(version: 20150426235750) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string  "content"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.string  "imei"
+    t.integer "like"
+    t.integer "report"
+    t.integer "dontcare"
+  end
 
 end
