@@ -44,10 +44,10 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-
-    def increase_likes
-      update_attributes(:like => like + 1)
-    end
+    private
+      def increase_likes
+        update_attributes(:like => like + 1)
+      end
 
     respond_to do |format|
       if @post[:like]
