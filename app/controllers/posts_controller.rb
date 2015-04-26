@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post[:like]
         flash[:success] = "Profile updated"
-        @post.increament!(:like)
+        @post.increment!(:like)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       end
