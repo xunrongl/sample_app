@@ -42,18 +42,35 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    @post = Post.find(params[:id])
+
+
+    def increase_likes
+      update_attributes(:like => like + 1)
+    end
+
     respond_to do |format|
-      if @post.update(post_params)
-        if (post_params[:like])
-          @post[:like] += 1
-        end
+      if @post[:like]
+        flash[:success] = "Profile updated"
+        @post.increase_likes
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+
+    # respond_to do |format|
+    #   if @post.update(post_params)
+    #     if (post_params[:like])
+    #       @post[:like] += 1
+    #     end
+    #     format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @post }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @post.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /posts/1
