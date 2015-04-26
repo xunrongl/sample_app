@@ -5,4 +5,5 @@ class Post < ActiveRecord::Base
   validates :imei, presence: true
   validates :like, presence: true
   validates :report, presence: true
+  validates :dontcare, presence: true
 end
