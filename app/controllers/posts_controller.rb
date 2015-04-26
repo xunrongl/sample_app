@@ -89,6 +89,6 @@ class PostsController < ApplicationController
     end
 
     def increase_likes
-        update_attributes(:like => like + 1)
-      end
+      update_attribute(:like => like + 1)
+    end
 end
