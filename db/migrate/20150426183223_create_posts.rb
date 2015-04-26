@@ -4,9 +4,9 @@ class CreatePosts < ActiveRecord::Migration
       t.string :content
       t.float :latitude
       t.float :longitude
-      t.integer :imei
-
-      t.timestamps null: false
+      t.string :imei
+      t.integer :like
+      t.integer :report
     end
   end
 end
