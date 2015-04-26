@@ -13,13 +13,4 @@
 
 ActiveRecord::Schema.define(version: 20150426233906) do
 
-  create_table "posts", force: :cascade do |t|
-    t.string  "content"
-    t.float   "latitude"
-    t.float   "longitude"
-    t.string  "imei"
-    t.integer "like"
-    t.integer "report"
-  end
-
 end

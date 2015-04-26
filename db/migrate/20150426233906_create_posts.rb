@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :imei
       t.integer :like
       t.integer :report
+      t.integer :dontcare
     end
   end
 end
