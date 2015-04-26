@@ -45,7 +45,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update(post_params)
         if (post_params[:like])
-          post[:like] += 1
+          @post[:like] += 1
         end
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
