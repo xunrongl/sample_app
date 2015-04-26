@@ -45,26 +45,18 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     respond_to do |format|
       if @post[:like]
-        flash[:success] = "Profile updated"
+        flash[:success] = "Like updated"
         @post.increment!(:like)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       end
+      if @post[:report]
+        flash[:success] = "Report updated"
+        @post.increment!(:report)
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      end
     end
-
-
-    # respond_to do |format|
-    #   if @post.update(post_params)
-    #     if (post_params[:like])
-    #       @post[:like] += 1
-    #     end
-    #     format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @post }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @post.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /posts/1
