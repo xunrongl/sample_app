@@ -43,12 +43,6 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
-    private
-      def increase_likes
-        update_attributes(:like => like + 1)
-      end
-
     respond_to do |format|
       if @post[:like]
         flash[:success] = "Profile updated"
@@ -93,4 +87,8 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:content, :latitude, :longitude, :imei, :like, :report)
     end
+
+    def increase_likes
+        update_attributes(:like => like + 1)
+      end
 end
