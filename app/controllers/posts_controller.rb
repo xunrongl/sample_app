@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post[:like]
         flash[:success] = "Profile updated"
-        @post.increase_likes
+        @post.increament!(:like)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       end
@@ -88,7 +88,5 @@ class PostsController < ApplicationController
       params.require(:post).permit(:content, :latitude, :longitude, :imei, :like, :report)
     end
 
-    def increase_likes
-      update_attribute(:like => like + 1)
-    end
+    
 end
