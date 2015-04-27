@@ -43,26 +43,26 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    respond_to do |format|
-      if params[:like]
-        flash[:success] = "Like updated"
-        @post.increment!(:like)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      end
-      if params[:report]
-        flash[:success] = "Report updated"
-        @post.increment!(:report)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      end
-      if params[:dontcare]
-        flash[:success] = "Report updated"
-        @post.increment!(:dontcare)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      end
+    # respond_to do |format|
+    if params[:like]
+      flash[:success] = "Like updated"
+      @post.increment!(:like)
+      format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+      format.json { render :show, status: :ok, location: @post }
     end
+    if params[:report]
+      flash[:success] = "Report updated"
+      @post.increment!(:report)
+      format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+      format.json { render :show, status: :ok, location: @post }
+    end
+    if params[:dontcare]
+      flash[:success] = "Report updated"
+      @post.increment!(:dontcare)
+      format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+      format.json { render :show, status: :ok, location: @post }
+    end
+    # end
   end
 
   # DELETE /posts/1
