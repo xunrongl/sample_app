@@ -44,19 +44,19 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     respond_to do |format|
-      if @post[:like]
+      if params[:like]
         flash[:success] = "Like updated"
         @post.increment!(:like)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       end
-      if @post[:report]
+      if params[:report]
         flash[:success] = "Report updated"
         @post.increment!(:report)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       end
-      if @post[:dontcare]
+      if params[:dontcare]
         flash[:success] = "Report updated"
         @post.increment!(:dontcare)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
