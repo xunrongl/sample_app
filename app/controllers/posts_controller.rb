@@ -27,7 +27,8 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    puts "print!!!!!"
+    puts post_params[:like]
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -43,26 +44,27 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    # respond_to do |format|
-    if params[:like]
-      flash[:success] = "Like updated"
-      @post.increment!(:like)
-      format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-      format.json { render :show, status: :ok, location: @post }
+    
+    respond_to do |format|
+      if post_params[:like]
+        flash[:success] = "Like updated"
+        @post.increment!(:like)
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      end
+      if post_params[:report]
+        flash[:success] = "Report updated"
+        @post.increment!(:report)
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      end
+      if post_params[:dontcare]
+        flash[:success] = "Report updated"
+        @post.increment!(:dontcare)
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      end
     end
-    if params[:report]
-      flash[:success] = "Report updated"
-      @post.increment!(:report)
-      format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-      format.json { render :show, status: :ok, location: @post }
-    end
-    if params[:dontcare]
-      flash[:success] = "Report updated"
-      @post.increment!(:dontcare)
-      format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-      format.json { render :show, status: :ok, location: @post }
-    end
-    # end
   end
 
   # DELETE /posts/1
