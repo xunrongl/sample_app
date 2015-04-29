@@ -46,24 +46,30 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     
     respond_to do |format|
-      if post_params[:like]
-        flash[:success] = "Like updated"
-        @post.increment!(:like)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+      if @post.update(post_params)
+        if post_params[:like]
+          flash[:success] = "Like updated"
+          @post.increment!(:like)
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { render :show, status: :ok, location: @post }
+        end
+        if post_params[:report]
+          flash[:success] = "Report updated"
+          @post.increment!(:report)
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { render :show, status: :ok, location: @post }
+        end
+        if post_params[:dontcare]
+          flash[:success] = "Report updated"
+          @post.increment!(:dontcare)
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { render :show, status: :ok, location: @post }
+        end
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
-      if post_params[:report]
-        flash[:success] = "Report updated"
-        @post.increment!(:report)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      end
-      if post_params[:dontcare]
-        flash[:success] = "Report updated"
-        @post.increment!(:dontcare)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      end
+      
     end
   end
 
